@@ -48,6 +48,13 @@ namespace Cookidea
             set { this.SetField(ref this._recipeUrl, value); }
         }
 
+        private string _touchedRecipeUrl;
+        public string TouchedRecipeUrl
+        {
+            get { return this._touchedRecipeUrl; }
+            set { this.SetField(ref this._touchedRecipeUrl, value); }
+        }
+
         private Query _query;
         public Query Query
         {
@@ -61,57 +68,8 @@ namespace Cookidea
             get { return this._isBusy; }
             set { this.SetField(ref this._isBusy, value); }
         }
-        #endregion
-
-        #region Constructor
-        public MainViewModel()
-        {
-            ItemTappedCommand = new BaseCommand((param) =>
-            {
-
-                var item = LastTappedItem as SimpleItem;
-                if (item != null)
-                    System.Diagnostics.Debug.WriteLine("Tapped {0}", item.Title);
-
-            });
-
-            this.IsBusy = false;
-            this.Query = new Query();
-            this.RecipesCount = 0;
-            this.Title = "";
-            this.ImageUrl = "";
-        }
-        #endregion
-
-        #region Methods
-        public async void SearchRecipesAsync(string param)
-        {
-            this.IsBusy = true;
-            this.Recipe.Clear();
-            Query results = await Services.DownloadService.GetRecipesAsync(param);
-
-            this.Query = results;
-            this.RecipesCount = results.Count;
-            this.Recipe = new ObservableCollection<Recipe>(results.Recipes);
-
-            this.IsBusy = false;
-        }
-
-        #endregion
 
         public ICommand ItemTappedCommand
-        {
-            get { return GetField<ICommand>(); }
-            set { SetField(value); }
-        }
-
-        public ICommand AddCommand
-        {
-            get { return GetField<ICommand>(); }
-            set { SetField(value); }
-        }
-
-        public ICommand RemoveCommand
         {
             get { return GetField<ICommand>(); }
             set { SetField(value); }
@@ -122,17 +80,36 @@ namespace Cookidea
             get { return GetField<object>(); }
             set { SetField(value); }
         }
+        #endregion
 
-        public class SimpleItem : BaseModel
+        #region Constructor
+        public MainViewModel()
         {
-            string title;
-            public string Title
-            {
-                get { return title; }
-                set { SetField(ref title, value); }
-            }
+            this.IsBusy = false;
 
-            public Color Color { get; private set; } = Color.Blue;
+            ItemTappedCommand = new BaseCommand((param) =>
+            {
+                Recipe recipe = LastTappedItem as Recipe;
+                if (recipe != null)
+                {
+                    this.TouchedRecipeUrl = recipe.SourceUrl;
+                }
+            });
         }
+        #endregion
+
+        #region Methods
+        public async void SearchRecipesAsync(string param)
+        {
+            this.IsBusy = true;
+            this.Recipe.Clear();
+
+            this.Query = await Services.DownloadService.GetRecipesAsync(param);
+            this.RecipesCount = this.Query.Count;
+            this.Recipe = new ObservableCollection<Recipe>(this.Query.Recipes);
+
+            this.IsBusy = false;
+        }
+        #endregion
     }
 }

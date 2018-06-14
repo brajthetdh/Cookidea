@@ -7,7 +7,7 @@
     <ContentPage.Content>
 
         <Grid>
-            <flv:FlowListView SeparatorVisibility="None" HasUnevenRows="true" FlowColumnCount="2"
+            <flv:FlowListView  SeparatorVisibility="None" HasUnevenRows="true" FlowColumnCount="2"
 			    FlowItemTappedCommand="{Binding ItemTappedCommand}" FlowLastTappedItem="{Binding LastTappedItem}"
 			    FlowColumnMinWidth="110" FlowItemsSource="{Binding Recipe}">
 
@@ -22,19 +22,12 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Image x:Name="RecipeImage" Source="{Binding ImageUrl}" HeightRequest="200" Aspect="AspectFill">
-                                <!--<Image.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Tapped="OnTapped" />
-                                </Image.GestureRecognizers>-->
-                            </Image>
-
+                            <Image Source="{Binding ImageUrl}" HeightRequest="200" Aspect="AspectFill"/>
                             <Label HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="End"
 							    BackgroundColor="Silver" Opacity="0.8" Text="{Binding Title}" FontSize="Medium"/>
                         </Grid>
                     </DataTemplate>
                 </flv:FlowListView.FlowColumnTemplate>
-
             </flv:FlowListView>
 
             <ActivityIndicator Color="Blue" VerticalOptions="Center" HorizontalOptions="Center" IsRunning="{Binding IsBusy}" IsEnabled="{Binding IsBusy}" IsVisible="{Binding IsBusy}">
