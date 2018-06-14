@@ -5,9 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.550146" />
+    <PackageReference Include="Xamvvm.Forms" Version="1.0.4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ResultPage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.iOS">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\Xamarin.iOS\v1.0\Xamarin.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
