@@ -1,4 +1,5 @@
 ﻿using Cookidea.Services;
+using Plugin.Connectivity;
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,7 +14,7 @@ namespace Cookidea
             InitializeComponent();
             
             btn_search.Clicked += (o, s) => {
-                if(DownloadService.IsConnected())
+                if(CrossConnectivity.Current.IsConnected)
                 {
                     var regex = new Regex(@"(?i)^[a-z,\s]+$");
                     if (!string.IsNullOrEmpty(et_ingredients.Text) && !string.IsNullOrWhiteSpace(et_ingredients.Text) && regex.IsMatch(et_ingredients.Text))
@@ -42,7 +43,10 @@ namespace Cookidea
 
         private void InitializeAppAsync()
         {
-            if (App.ViewModel == null) App.ViewModel = new MainViewModel();
+            if (App.ViewModel == null)
+            {
+                App.ViewModel = new MainViewModel();
+            }
         }
     }
 }

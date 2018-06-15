@@ -1,11 +1,8 @@
 ﻿using Cookidea.Services;
+using Plugin.Connectivity;
 using QuickType;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
-using Xamarin.Forms;
 using Xamvvm;
 
 namespace Cookidea
@@ -82,7 +79,7 @@ namespace Cookidea
 
             ItemTappedCommand = new BaseCommand(async (param) =>
             {
-                if (DownloadService.IsConnected())
+                if (CrossConnectivity.Current.IsConnected)
                 {
                     Recipe recipe = LastTappedItem as Recipe;
                     if (recipe != null)

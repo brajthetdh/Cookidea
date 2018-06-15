@@ -15,10 +15,5 @@ namespace Cookidea.Services
             var parsedJSON = Query.FromJson(response);
             return parsedJSON;
         }
-
-        public static bool IsConnected()
-        {
-            return CrossConnectivity.Current.IsConnected ? true : false;
-        }
     }
 }
