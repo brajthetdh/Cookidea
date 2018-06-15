@@ -1,10 +1,7 @@
-﻿using QuickType;
-using System;
-using System.Collections.Generic;
+﻿using Plugin.Connectivity;
+using QuickType;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace Cookidea.Services
 {
@@ -17,6 +14,11 @@ namespace Cookidea.Services
             var response = await client.GetStringAsync(url);
             var parsedJSON = Query.FromJson(response);
             return parsedJSON;
+        }
+
+        public static bool IsConnected()
+        {
+            return CrossConnectivity.Current.IsConnected ? true : false;
         }
     }
 }

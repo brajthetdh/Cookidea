@@ -4,7 +4,10 @@
              x:Class="Cookidea.Views.WebViewPage">
     <ContentPage.Content>
         <StackLayout>
-            <ProgressBar x:Name="pb_loadingWeb" Progress="0.2" HorizontalOptions="FillAndExpand" IsVisible="True"/>
+            <ProgressBar x:Name="pb_loadingWeb"
+                         Progress="0.2"
+                         HorizontalOptions="FillAndExpand" 
+                         IsVisible="True"/>
             <WebView x:Name="wv_recipePage"
                  HeightRequest="1000"
                  WidthRequest="1000"

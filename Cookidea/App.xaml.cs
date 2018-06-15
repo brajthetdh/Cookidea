@@ -1,7 +1,7 @@
-using Cookidea.ViewModels;
 using DLToolkit.Forms.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static Cookidea.TranslateExtension;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Cookidea
@@ -13,6 +13,13 @@ namespace Cookidea
         {
             InitializeComponent();
             FlowListView.Init();
+
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+            {
+                var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                AppResources.Culture = ci; // set the RESX for resource localization
+                DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
+            }
 
             MainPage = new NavigationPage(new MainPage());
         }

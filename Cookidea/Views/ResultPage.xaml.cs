@@ -2,7 +2,6 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamvvm;
-using static Cookidea.MainViewModel;
 
 namespace Cookidea
 {

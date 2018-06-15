@@ -92,6 +92,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Localize.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -155,6 +156,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Connectivity">
+      <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.561731" />
     <PackageReference Include="Xamvvm.Forms">

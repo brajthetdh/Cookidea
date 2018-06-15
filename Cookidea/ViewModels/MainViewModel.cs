@@ -1,4 +1,4 @@
-﻿using Cookidea.ViewModels;
+﻿using Cookidea.Services;
 using QuickType;
 using System;
 using System.Collections.Generic;
@@ -18,13 +18,6 @@ namespace Cookidea
         {
             get { if (this._recipe == null) this._recipe = new ObservableCollection<Recipe>(); return this._recipe; }
             set { this.SetField(ref this._recipe, value); }
-        }
-
-        private int _recipesCount;
-        public int RecipesCount
-        {
-            get { return this._recipesCount; }
-            set { this.SetField(ref this._recipesCount, value); }
         }
 
         private string _title;
@@ -87,14 +80,23 @@ namespace Cookidea
         {
             this.IsBusy = false;
 
-            ItemTappedCommand = new BaseCommand((param) =>
+            ItemTappedCommand = new BaseCommand(async (param) =>
             {
-                Recipe recipe = LastTappedItem as Recipe;
-                if (recipe != null)
+                if (DownloadService.IsConnected())
                 {
-                    this.TouchedRecipeUrl = recipe.SourceUrl;
+                    Recipe recipe = LastTappedItem as Recipe;
+                    if (recipe != null)
+                    {
+                        this.TouchedRecipeUrl = recipe.SourceUrl;
+                    }
                 }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert(AppResources.da_internet_title, AppResources.da_internet_desc, AppResources.da_ok);
+                }
+                
             });
+            
         }
         #endregion
 
@@ -105,7 +107,6 @@ namespace Cookidea
             this.Recipe.Clear();
 
             this.Query = await Services.DownloadService.GetRecipesAsync(param);
-            this.RecipesCount = this.Query.Count;
             this.Recipe = new ObservableCollection<Recipe>(this.Query.Recipes);
 
             this.IsBusy = false;
