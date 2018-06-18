@@ -1,5 +1,4 @@
-﻿using Cookidea.Services;
-using Plugin.Connectivity;
+﻿using Plugin.Connectivity;
 using QuickType;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
