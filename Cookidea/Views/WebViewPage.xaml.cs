@@ -9,24 +9,24 @@ namespace Cookidea.Views
 		public WebViewPage ()
 		{
             InitializeComponent();
-            wv_recipePage.Source = App.ViewModel.TouchedRecipeUrl;
+            WebViewRecipePage.Source = App.ViewModel.TouchedRecipeUrl;
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            await pb_loadingWeb.ProgressTo(0.9, 900, Easing.SpringIn);
+            await ProgressLoadingWeb.ProgressTo(0.9, 900, Easing.SpringIn);
         }
 
         private void WebView_OnNavigating(object sender, WebNavigatingEventArgs e)
         {
-            pb_loadingWeb.IsVisible = true;
+            ProgressLoadingWeb.IsVisible = true;
         }
 
         private void WebView_OnNavigated(object sender, WebNavigatedEventArgs e)
         {
-            pb_loadingWeb.IsVisible = false;
+            ProgressLoadingWeb.IsVisible = false;
         }
     }
 }

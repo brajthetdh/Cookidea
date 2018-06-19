@@ -13,23 +13,23 @@ namespace Cookidea
         {
             InitializeComponent();
             
-            btn_search.Clicked += (o, s) => {
+            BtnSearch.Clicked += (o, s) => {
                 if(CrossConnectivity.Current.IsConnected)
                 {
-                    var regex = new Regex(@"(?i)^[a-z,\s]+$");
-                    if (!string.IsNullOrEmpty(et_ingredients.Text) && !string.IsNullOrWhiteSpace(et_ingredients.Text) && regex.IsMatch(et_ingredients.Text))
+                    var regex = new Regex(@"(?i)^[a-z,\s]+$");  //Letters and commas are valid
+                    if (!string.IsNullOrEmpty(EntryIngredients.Text) && !string.IsNullOrWhiteSpace(EntryIngredients.Text) && regex.IsMatch(EntryIngredients.Text))
                     {
-                        App.ViewModel.SearchRecipesAsync(et_ingredients.Text.Replace(" ", string.Empty));
+                        App.ViewModel.SearchRecipesAsync(EntryIngredients.Text.Replace(" ", string.Empty));
                         Navigation.PushAsync(new ResultPage());
                     }
                     else
                     {
-                        DisplayAlert(AppResources.da_input_title, AppResources.da_input_desc, AppResources.da_ok);
+                        DisplayAlert(AppResources.AlertInputTitle, AppResources.AlertInputDesc, AppResources.AlertOk);
                     }
                 }
                 else
                 {
-                    DisplayAlert(AppResources.da_internet_title, AppResources.da_internet_desc, AppResources.da_ok);
+                    DisplayAlert(AppResources.AlertInternetTitle, AppResources.AlertInternetDesc, AppResources.AlertOk);
                 }
             };              
         }

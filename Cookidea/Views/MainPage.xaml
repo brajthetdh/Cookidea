@@ -3,23 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:Cookidea;assembly=Cookidea"
              x:Class="Cookidea.MainPage"
-             Title="{i18n:Translate title_main}">
+             Title="{i18n:Translate TitleMain}">
 
     <StackLayout Padding="0,50">
-        <Label Text="{i18n:Translate lbl_1}" 
+        <Label Text="{i18n:Translate Lbl1}" 
                HorizontalOptions="Center"
                VerticalOptions="Center" 
                FontSize="20" />
-        <Label Text="{i18n:Translate lbl_2}"
+        <Label Text="{i18n:Translate Lbl2}"
                HorizontalOptions="Center"
                VerticalOptions="Center" />
-        <Entry x:Name="et_ingredients" 
+        <Entry x:Name="EntryIngredients" 
                HorizontalOptions="Center"
                VerticalOptions="Center" 
                WidthRequest="250" 
-               Placeholder="{i18n:Translate et_ingredients}" />
-        <Button x:Name="btn_search" 
-                Text="{i18n:Translate btn_search}"
+               Placeholder="{i18n:Translate EntryIngredients}" />
+        <Button x:Name="BtnSearch" 
+                Text="{i18n:Translate BtnSearch}"
                 HorizontalOptions="Center" 
                 VerticalOptions="Center"/>
 

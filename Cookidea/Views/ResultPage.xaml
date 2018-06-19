@@ -4,7 +4,7 @@
              xmlns:i18n="clr-namespace:Cookidea;assembly=Cookidea"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              x:Class="Cookidea.ResultPage"
-             Title="{i18n:Translate title_result}">
+             Title="{i18n:Translate TitleResult}">
     <ContentPage.Content>
 
         <Grid>

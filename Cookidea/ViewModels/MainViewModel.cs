@@ -88,7 +88,7 @@ namespace Cookidea
                 }
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert(AppResources.da_internet_title, AppResources.da_internet_desc, AppResources.da_ok);
+                    await App.Current.MainPage.DisplayAlert(AppResources.AlertInternetTitle, AppResources.AlertInternetDesc, AppResources.AlertOk);
                 }
                 
             });
@@ -104,6 +104,10 @@ namespace Cookidea
 
             this.Query = await Services.DownloadService.GetRecipesAsync(param);
             this.Recipe = new ObservableCollection<Recipe>(this.Query.Recipes);
+            if(this.Recipe.Count == 0)
+            {
+                await App.Current.MainPage.DisplayAlert(AppResources.AlertNoResultsTitle, AppResources.AlertNoResultsDesc, AppResources.AlertOk);
+            }
 
             this.IsBusy = false;
         }

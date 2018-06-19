@@ -4,6 +4,7 @@ namespace Cookidea
 {
     public class PlatformCulture
     {
+        #region Constructor
         public PlatformCulture(string platformCultureString)
         {
             if (String.IsNullOrEmpty(platformCultureString))
@@ -24,12 +25,19 @@ namespace Cookidea
                 LocaleCode = "";
             }
         }
+        #endregion
+
+        #region Properties
         public string PlatformString { get; private set; }
         public string LanguageCode { get; private set; }
         public string LocaleCode { get; private set; }
+        #endregion
+
+        #region Methods
         public override string ToString()
         {
             return PlatformString;
         }
+        #endregion
     }
 }

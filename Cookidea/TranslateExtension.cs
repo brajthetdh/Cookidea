@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cookidea.Services;
+using System;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
@@ -7,7 +8,9 @@ using Xamarin.Forms.Xaml;
 
 namespace Cookidea
 {
-    // You exclude the 'Extension' suffix when using in XAML
+    /// <summary>
+    /// You exclude the 'Extension' suffix when using in XAML
+    /// </summary>
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {
@@ -23,7 +26,7 @@ namespace Cookidea
         {
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
-                ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                ci = new LocalizeService().GetCurrentCultureInfo();
             }
         }
 

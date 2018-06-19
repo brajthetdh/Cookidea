@@ -117,31 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btn_search" xml:space="preserve">
+  <data name="BtnSearch" xml:space="preserve">
     <value>Buscar</value>
   </data>
-  <data name="da_input_desc" xml:space="preserve">
+  <data name="AlertInputDesc" xml:space="preserve">
     <value>Has introducido un formato erróneo. Por favor, usa solo palabras y comas, y busca de nuevo.</value>
   </data>
-  <data name="da_input_title" xml:space="preserve">
+  <data name="AlertInputTitle" xml:space="preserve">
     <value>Formato incorrecto</value>
   </data>
-  <data name="da_internet_desc" xml:space="preserve">
+  <data name="AlertInternetDesc" xml:space="preserve">
     <value>No hay conexión a internet. Por favor, comprueba tu conexión y vuelve a intentarlo.</value>
   </data>
-  <data name="da_internet_title" xml:space="preserve">
+  <data name="AlertInternetTitle" xml:space="preserve">
     <value>No hay conexión</value>
   </data>
-  <data name="et_ingredients" xml:space="preserve">
+  <data name="AlertNoResultsDesc" xml:space="preserve">
+    <value>Ups! No encontramos ninguna receta que coincida con tus ingredientes. Prueba de nuevo con otros ingredientes :)</value>
+  </data>
+  <data name="AlertNoResultsTitle" xml:space="preserve">
+    <value>No hay resultados</value>
+  </data>
+  <data name="EntryIngredients" xml:space="preserve">
     <value>chocolate, caramelo...</value>
   </data>
-  <data name="lbl_1" xml:space="preserve">
+  <data name="Lbl1" xml:space="preserve">
     <value>¡Busca recetas por ingredientes!</value>
   </data>
-  <data name="lbl_2" xml:space="preserve">
+  <data name="Lbl2" xml:space="preserve">
     <value>(separa los ingredientes con coma)</value>
   </data>
-  <data name="title_result" xml:space="preserve">
-    <value>Recetas</value>
+  <data name="TitleMain" xml:space="preserve">
+    <value>Cookidea</value>
+  </data>
+  <data name="TitleResult" xml:space="preserve">
+    <value>Recipes</value>
   </data>
 </root>

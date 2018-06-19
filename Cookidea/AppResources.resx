@@ -117,37 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btn_search" xml:space="preserve">
+  <data name="BtnSearch" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="da_input_desc" xml:space="preserve">
+  <data name="AlertInputDesc" xml:space="preserve">
     <value>You have entered a wrong input text. Please, use only words and commas and search again.</value>
   </data>
-  <data name="da_input_title" xml:space="preserve">
+  <data name="AlertInputTitle" xml:space="preserve">
     <value>Incorrect Input</value>
   </data>
-  <data name="da_internet_desc" xml:space="preserve">
+  <data name="AlertInternetDesc" xml:space="preserve">
     <value>There is no internet connection. Please check your connection and try again.</value>
   </data>
-  <data name="da_internet_title" xml:space="preserve">
+  <data name="AlertInternetTitle" xml:space="preserve">
     <value>No Connection</value>
   </data>
-  <data name="da_ok" xml:space="preserve">
+  <data name="AlertNoResultsDesc" xml:space="preserve">
+    <value>Oops! We didn't found a recipe that matches your ingredients! Try again with other ingredients! :)</value>
+  </data>
+  <data name="AlertNoResultsTitle" xml:space="preserve">
+    <value>No results</value>
+  </data>
+  <data name="AlertOk" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="et_ingredients" xml:space="preserve">
+  <data name="EntryIngredients" xml:space="preserve">
     <value>chocolate, caramel...</value>
   </data>
-  <data name="lbl_1" xml:space="preserve">
+  <data name="Lbl1" xml:space="preserve">
     <value>Search recipes by ingredients!</value>
   </data>
-  <data name="lbl_2" xml:space="preserve">
+  <data name="Lbl2" xml:space="preserve">
     <value>(separate ingredients with a comma)</value>
   </data>
-  <data name="title_main" xml:space="preserve">
+  <data name="TitleMain" xml:space="preserve">
     <value>Cookidea</value>
   </data>
-  <data name="title_result" xml:space="preserve">
+  <data name="TitleResult" xml:space="preserve">
     <value>Recipes</value>
   </data>
 </root>

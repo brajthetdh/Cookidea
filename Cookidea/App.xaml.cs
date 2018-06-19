@@ -1,3 +1,4 @@
+using Cookidea.Services;
 using DLToolkit.Forms.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,9 +17,10 @@ namespace Cookidea
 
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
-                var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                LocalizeService localizeService = new LocalizeService();
+                var ci = localizeService.GetCurrentCultureInfo();
                 AppResources.Culture = ci; // set the RESX for resource localization
-                DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
+                localizeService.SetLocale(ci); // set the Thread for locale-aware methods
             }
 
             MainPage = new NavigationPage(new MainPage());
