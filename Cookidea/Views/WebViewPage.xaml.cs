@@ -9,12 +9,12 @@ namespace Cookidea.Views
 		public WebViewPage ()
 		{
             InitializeComponent();
-            WebViewRecipePage.Source = App.ViewModel.TouchedRecipeUrl;
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            this.BindingContext = App.ViewModel;
 
             await ProgressLoadingWeb.ProgressTo(0.9, 900, Easing.SpringIn);
         }

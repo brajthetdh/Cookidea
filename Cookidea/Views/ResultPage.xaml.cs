@@ -11,21 +11,12 @@ namespace Cookidea
         public ResultPage()
         {
             InitializeComponent();
-            App.ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
         protected override void OnAppearing()
         {
             this.BindingContext = App.ViewModel;
             base.OnAppearing();
-        }
-
-        void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "TouchedRecipeUrl")
-            {
-                Navigation.PushAsync(new WebViewPage());
-            }
         }
     }
 }

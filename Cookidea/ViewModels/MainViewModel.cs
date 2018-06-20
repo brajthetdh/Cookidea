@@ -1,12 +1,11 @@
 ﻿using Cookidea.Models;
 using Cookidea.Services;
+using Cookidea.Views;
 using Plugin.Connectivity;
 using QuickType;
-using System;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
-using Xamarin.Forms;
 using Xamvvm;
 
 namespace Cookidea
@@ -99,6 +98,7 @@ namespace Cookidea
             CmdBtnSearchClicked = new BaseCommand(param => BtnSearchClicked());
 
             ItemTappedCommand = new BaseCommand(param => ItemTapped());
+
         }
         #endregion
 
@@ -126,6 +126,7 @@ namespace Cookidea
                 if (recipe != null)
                 {
                     this.TouchedRecipeUrl = recipe.SourceUrl;
+                    new NavigationService().NavigateTo(new WebViewPage());
                 }
             }
             else
@@ -142,7 +143,8 @@ namespace Cookidea
                 if (!string.IsNullOrEmpty(EntryIngredientsText) && !string.IsNullOrWhiteSpace(EntryIngredientsText) && regex.IsMatch(EntryIngredientsText))
                 {
                     SearchRecipesAsync(EntryIngredientsText.Replace(" ", string.Empty));
-                    //Navigation.PushAsync(new ResultPage());
+
+                    new NavigationService().NavigateTo(new ResultPage());
                 }
                 else
                 {
