@@ -15,13 +15,10 @@ namespace Cookidea
             InitializeComponent();
             FlowListView.Init();
 
-            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
-            {
-                LocalizeService localizeService = new LocalizeService();
-                var ci = localizeService.GetCurrentCultureInfo();
-                AppResources.Culture = ci; // set the RESX for resource localization
-                localizeService.SetLocale(ci); // set the Thread for locale-aware methods
-            }
+            LocalizeService localizeService = new LocalizeService();
+            var ci = localizeService.GetCurrentCultureInfo();
+            AppResources.Culture = ci; // set the RESX for resource localization
+            localizeService.SetLocale(ci); // set the Thread for locale-aware methods
 
             MainPage = new NavigationPage(new MainPage());
         }

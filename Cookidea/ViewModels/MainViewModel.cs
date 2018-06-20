@@ -1,7 +1,12 @@
-﻿using Plugin.Connectivity;
+﻿using Cookidea.Models;
+using Cookidea.Services;
+using Plugin.Connectivity;
 using QuickType;
+using System;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
+using Xamarin.Forms;
 using Xamvvm;
 
 namespace Cookidea
@@ -58,7 +63,20 @@ namespace Cookidea
             set { this.SetField(ref this._isBusy, value); }
         }
 
+        private string _entryIngredientsText;
+        public string EntryIngredientsText
+        {
+            get { return this._entryIngredientsText; }
+            set { this.SetField(ref this._entryIngredientsText, value); }
+        }
+
         public ICommand ItemTappedCommand
+        {
+            get { return GetField<ICommand>(); }
+            set { SetField(value); }
+        }
+
+        public ICommand CmdBtnSearchClicked
         {
             get { return GetField<ICommand>(); }
             set { SetField(value); }
@@ -69,30 +87,18 @@ namespace Cookidea
             get { return GetField<object>(); }
             set { SetField(value); }
         }
+
+        
         #endregion
 
         #region Constructor
         public MainViewModel()
         {
-            this.IsBusy = false;
+            IsBusy = false;
 
-            ItemTappedCommand = new BaseCommand(async (param) =>
-            {
-                if (CrossConnectivity.Current.IsConnected)
-                {
-                    Recipe recipe = LastTappedItem as Recipe;
-                    if (recipe != null)
-                    {
-                        this.TouchedRecipeUrl = recipe.SourceUrl;
-                    }
-                }
-                else
-                {
-                    await App.Current.MainPage.DisplayAlert(AppResources.AlertInternetTitle, AppResources.AlertInternetDesc, AppResources.AlertOk);
-                }
-                
-            });
-            
+            CmdBtnSearchClicked = new BaseCommand(param => BtnSearchClicked());
+
+            ItemTappedCommand = new BaseCommand(param => ItemTapped());
         }
         #endregion
 
@@ -110,6 +116,43 @@ namespace Cookidea
             }
 
             this.IsBusy = false;
+        }
+
+        private async void ItemTapped()
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                Recipe recipe = LastTappedItem as Recipe;
+                if (recipe != null)
+                {
+                    this.TouchedRecipeUrl = recipe.SourceUrl;
+                }
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(AppResources.AlertInternetTitle, AppResources.AlertInternetDesc, AppResources.AlertOk);
+            }
+        }
+
+        private async void BtnSearchClicked()
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var regex = new Regex(@"(?i)^[a-z,\s]+$");  //Only letters and commas are valid
+                if (!string.IsNullOrEmpty(EntryIngredientsText) && !string.IsNullOrWhiteSpace(EntryIngredientsText) && regex.IsMatch(EntryIngredientsText))
+                {
+                    SearchRecipesAsync(EntryIngredientsText.Replace(" ", string.Empty));
+                    //Navigation.PushAsync(new ResultPage());
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert(AppResources.AlertInputTitle, AppResources.AlertInputDesc, AppResources.AlertOk);
+                }
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(AppResources.AlertInternetTitle, AppResources.AlertInternetDesc, AppResources.AlertOk);
+            }
         }
         #endregion
     }

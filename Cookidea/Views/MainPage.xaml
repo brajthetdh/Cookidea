@@ -17,8 +17,10 @@
                HorizontalOptions="Center"
                VerticalOptions="Center" 
                WidthRequest="250" 
+               Text="{Binding EntryIngredientsText}"
                Placeholder="{i18n:Translate EntryIngredients}" />
         <Button x:Name="BtnSearch" 
+                Command="{Binding CmdBtnSearchClicked}"
                 Text="{i18n:Translate BtnSearch}"
                 HorizontalOptions="Center" 
                 VerticalOptions="Center"/>

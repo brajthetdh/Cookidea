@@ -24,10 +24,7 @@ namespace Cookidea
 
         public TranslateExtension()
         {
-            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
-            {
-                ci = new LocalizeService().GetCurrentCultureInfo();
-            }
+            ci = new LocalizeService().GetCurrentCultureInfo();
         }
 
         public object ProvideValue(IServiceProvider serviceProvider)
