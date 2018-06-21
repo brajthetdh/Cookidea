@@ -48,6 +48,13 @@ namespace Cookidea
             set { this.SetField(ref this._touchedRecipeUrl, value); }
         }
 
+        private Recipe _touchedRecipe;
+        public Recipe TouchedRecipe
+        {
+            get { return this._touchedRecipe; }
+            set { this.SetField(ref this._touchedRecipe, value); }
+        }
+
         private Query _query;
         public Query Query
         {
@@ -70,6 +77,12 @@ namespace Cookidea
         }
 
         public ICommand ItemTappedCommand
+        {
+            get { return GetField<ICommand>(); }
+            set { SetField(value); }
+        }
+
+        public ICommand CmdFavTapped
         {
             get { return GetField<ICommand>(); }
             set { SetField(value); }
@@ -99,6 +112,7 @@ namespace Cookidea
 
             ItemTappedCommand = new BaseCommand(param => ItemTapped());
 
+            CmdFavTapped = new BaseCommand(param => FavTapped());
         }
         #endregion
 
@@ -127,6 +141,22 @@ namespace Cookidea
                 {
                     this.TouchedRecipeUrl = recipe.SourceUrl;
                     new NavigationService().NavigateTo(new WebViewPage());
+                }
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(AppResources.AlertInternetTitle, AppResources.AlertInternetDesc, AppResources.AlertOk);
+            }
+        }
+
+        private async void FavTapped()
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                this.TouchedRecipe = LastTappedItem as Recipe;
+                if (this.TouchedRecipe != null)
+                {
+                    await App.Current.MainPage.DisplayAlert("Test", TouchedRecipeUrl, AppResources.AlertOk);
                 }
             }
             else

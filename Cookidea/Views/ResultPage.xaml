@@ -30,6 +30,7 @@
                             <Image Source="{Binding ImageUrl}"
                                    HeightRequest="200" 
                                    Aspect="AspectFill"/>
+
                             <Label Text="{Binding Title}"
                                    HorizontalOptions="Fill" 
                                    HorizontalTextAlignment="Center" 

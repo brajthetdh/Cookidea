@@ -2,7 +2,6 @@ using Cookidea.Services;
 using DLToolkit.Forms.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static Cookidea.TranslateExtension;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Cookidea
