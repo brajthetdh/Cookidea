@@ -1,16 +1,15 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xamvvm;
 
 namespace Cookidea.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ResultPage : ContentPage, IBasePage<MainViewModel>
-    {
-        public ResultPage()
-        {
-            InitializeComponent();
-        }
+	public partial class FavPage : ContentPage
+	{
+		public FavPage ()
+		{
+			InitializeComponent();
+		}
 
         protected override void OnAppearing()
         {

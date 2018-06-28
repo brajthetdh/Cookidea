@@ -14,7 +14,7 @@ namespace Cookidea.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            this.BindingContext = App.ViewModel;
+            this.BindingContext = App.viewModel;
 
             await ProgressLoadingWeb.ProgressTo(0.9, 900, Easing.SpringIn);
         }

@@ -61,6 +61,24 @@ namespace Cookidea {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recipe added to favorites.
+        /// </summary>
+        public static string AlertFavAddedDesc {
+            get {
+                return ResourceManager.GetString("AlertFavAddedDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipe deleted from favorites.
+        /// </summary>
+        public static string AlertFavDeletedDesc {
+            get {
+                return ResourceManager.GetString("AlertFavDeletedDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have entered a wrong input text. Please, use only words and commas and search again..
         /// </summary>
         public static string AlertInputDesc {
@@ -93,6 +111,15 @@ namespace Cookidea {
         public static string AlertInternetTitle {
             get {
                 return ResourceManager.GetString("AlertInternetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Favorites list is empty.
+        /// </summary>
+        public static string AlertNoFavsDesc {
+            get {
+                return ResourceManager.GetString("AlertNoFavsDesc", resourceCulture);
             }
         }
         
@@ -156,6 +183,15 @@ namespace Cookidea {
         public static string Lbl2 {
             get {
                 return ResourceManager.GetString("Lbl2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Favorites.
+        /// </summary>
+        public static string TitleFav {
+            get {
+                return ResourceManager.GetString("TitleFav", resourceCulture);
             }
         }
         

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SQLite;
 
 namespace Cookidea.Models
 {
@@ -16,7 +17,7 @@ namespace Cookidea.Models
         [JsonProperty("source_url")]
         public string SourceUrl { get; set; }
 
-        [JsonProperty("recipe_id")]
+        [JsonProperty("recipe_id"), PrimaryKey]
         public string RecipeId { get; set; }
 
         [JsonProperty("image_url")]

@@ -1,7 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Cookidea
+namespace Cookidea.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
@@ -14,15 +14,15 @@ namespace Cookidea
         protected override void OnAppearing()
         {
             InitializeAppAsync();
-            this.BindingContext = App.ViewModel;
+            this.BindingContext = App.viewModel;
             base.OnAppearing();
         }
 
         private void InitializeAppAsync()
         {
-            if (App.ViewModel == null)
+            if (App.viewModel == null)
             {
-                App.ViewModel = new MainViewModel();
+                App.viewModel = new MainViewModel();
             }
         }
     }

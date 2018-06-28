@@ -156,4 +156,16 @@
   <data name="TitleResult" xml:space="preserve">
     <value>Recipes</value>
   </data>
+  <data name="TitleFav" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="AlertFavAddedDesc" xml:space="preserve">
+    <value>Recipe added to favorites</value>
+  </data>
+  <data name="AlertFavDeletedDesc" xml:space="preserve">
+    <value>Recipe deleted from favorites</value>
+  </data>
+  <data name="AlertNoFavsDesc" xml:space="preserve">
+    <value>Favorites list is empty</value>
+  </data>
 </root>

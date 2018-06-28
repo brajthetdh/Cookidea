@@ -6,6 +6,7 @@ using QuickType;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using Xamarin.Forms;
 using Xamvvm;
 
 namespace Cookidea
@@ -13,11 +14,18 @@ namespace Cookidea
     public class MainViewModel : BasePageModel
     {
         #region Properties
-        private ObservableCollection<Recipe> _recipe;
-        public ObservableCollection<Recipe> Recipe
+        private ObservableCollection<Recipe> _recipes;
+        public ObservableCollection<Recipe> Recipes
         {
-            get { if (this._recipe == null) this._recipe = new ObservableCollection<Recipe>(); return this._recipe; }
-            set { this.SetField(ref this._recipe, value); }
+            get { if (this._recipes == null) this._recipes = new ObservableCollection<Recipe>(); return this._recipes; }
+            set { this.SetField(ref this._recipes, value); }
+        }
+
+        private ObservableCollection<Recipe> _favRecipes;
+        public ObservableCollection<Recipe> FavRecipes
+        {
+            get { if (this._favRecipes == null) this._favRecipes = new ObservableCollection<Recipe>(); return this._favRecipes; }
+            set { this.SetField(ref this._favRecipes, value); }
         }
 
         private string _title;
@@ -82,7 +90,7 @@ namespace Cookidea
             set { SetField(value); }
         }
 
-        public ICommand CmdFavTapped
+        public ICommand CmdFavMainTapped
         {
             get { return GetField<ICommand>(); }
             set { SetField(value); }
@@ -99,8 +107,6 @@ namespace Cookidea
             get { return GetField<object>(); }
             set { SetField(value); }
         }
-
-        
         #endregion
 
         #region Constructor
@@ -112,7 +118,7 @@ namespace Cookidea
 
             ItemTappedCommand = new BaseCommand(param => ItemTapped());
 
-            CmdFavTapped = new BaseCommand(param => FavTapped());
+            CmdFavMainTapped = new BaseCommand(param => FavMainTapped());
         }
         #endregion
 
@@ -120,11 +126,11 @@ namespace Cookidea
         public async void SearchRecipesAsync(string param)
         {
             this.IsBusy = true;
-            this.Recipe.Clear();
+            this.Recipes.Clear();
 
             this.Query = await Services.DownloadService.GetRecipesAsync(param);
-            this.Recipe = new ObservableCollection<Recipe>(this.Query.Recipes);
-            if(this.Recipe.Count == 0)
+            this.Recipes = new ObservableCollection<Recipe>(this.Query.Recipes);
+            if(this.Recipes.Count == 0)
             {
                 await App.Current.MainPage.DisplayAlert(AppResources.AlertNoResultsTitle, AppResources.AlertNoResultsDesc, AppResources.AlertOk);
             }
@@ -141,6 +147,16 @@ namespace Cookidea
                 {
                     this.TouchedRecipeUrl = recipe.SourceUrl;
                     new NavigationService().NavigateTo(new WebViewPage());
+
+                    //if the recipe already is in favorites
+                    if(await App.DatabaseService.GetItemAsync(recipe.RecipeId) != null)
+                    {
+                        App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "starFilled.png", () => DeleteFavorite(recipe)));
+                    }
+                    else
+                    {
+                        App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "star.png", () => SaveFavorite(recipe)));
+                    }
                 }
             }
             else
@@ -149,19 +165,33 @@ namespace Cookidea
             }
         }
 
-        private async void FavTapped()
+        private async void SaveFavorite(Recipe recipe)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            await App.DatabaseService.SaveItemAsync(recipe);
+            await App.Current.MainPage.DisplayAlert(AppResources.TitleFav, AppResources.AlertFavAddedDesc, AppResources.AlertOk);
+
+            App.Current.MainPage.ToolbarItems.Clear();
+            App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "starFilled.png", () => DeleteFavorite(recipe)));
+        }
+
+        private async void DeleteFavorite(Recipe recipe)
+        {
+            await App.DatabaseService.DeleteItemAsync(recipe);
+            await App.Current.MainPage.DisplayAlert(AppResources.TitleFav, AppResources.AlertFavDeletedDesc, AppResources.AlertOk);
+            this.FavRecipes = new ObservableCollection<Recipe>(await App.DatabaseService.GetItemsAsync());
+
+            App.Current.MainPage.ToolbarItems.Clear();
+            App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "star.png", () => SaveFavorite(recipe)));
+        }
+
+        private async void FavMainTapped()
+        {
+            this.FavRecipes = new ObservableCollection<Recipe>(await App.DatabaseService.GetItemsAsync());
+            new NavigationService().NavigateTo(new FavPage());
+
+            if(this.FavRecipes.Count == 0)
             {
-                this.TouchedRecipe = LastTappedItem as Recipe;
-                if (this.TouchedRecipe != null)
-                {
-                    await App.Current.MainPage.DisplayAlert("Test", TouchedRecipeUrl, AppResources.AlertOk);
-                }
-            }
-            else
-            {
-                await App.Current.MainPage.DisplayAlert(AppResources.AlertInternetTitle, AppResources.AlertInternetDesc, AppResources.AlertOk);
+                await App.Current.MainPage.DisplayAlert(AppResources.AlertNoResultsTitle, AppResources.AlertNoFavsDesc, AppResources.AlertOk);
             }
         }
 

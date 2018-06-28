@@ -1,5 +1,8 @@
 using Cookidea.Services;
+using Cookidea.Views;
 using DLToolkit.Forms.Controls;
+using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,7 +11,12 @@ namespace Cookidea
 {
     public partial class App : Application
     {
-        public static MainViewModel ViewModel;
+        #region Properties
+        public static MainViewModel viewModel;
+        public static DatabaseService databaseService;
+        #endregion
+
+        #region Constructor
         public App()
         {
             InitializeComponent();
@@ -21,6 +29,7 @@ namespace Cookidea
 
             MainPage = new NavigationPage(new MainPage());
         }
+        #endregion
 
         protected override void OnStart()
         {
@@ -35,6 +44,19 @@ namespace Cookidea
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        public static DatabaseService DatabaseService
+        {
+            get
+            {
+                if(databaseService == null)
+                {
+                    databaseService = new DatabaseService(
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CookideaDB.db3"));
+                }
+                return databaseService;
+            }
         }
     }
 }

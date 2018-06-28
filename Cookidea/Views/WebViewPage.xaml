@@ -3,14 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Cookidea.Views.WebViewPage">
     
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Name="FavIcon"
-                     Order="Primary" 
-                     Icon="star.png" 
-                     Priority="0" 
-                     Command="{Binding CmdFavTapped}"/>
-    </ContentPage.ToolbarItems>
-    
     <ContentPage.Content>
         <StackLayout>
             <ProgressBar x:Name="ProgressLoadingWeb"

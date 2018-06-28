@@ -2,9 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:Cookidea;assembly=Cookidea"
-             x:Class="Cookidea.MainPage"
+             x:Class="Cookidea.Views.MainPage"
              Title="{i18n:Translate TitleMain}">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="FavIcon"
+                     Order="Primary" 
+                     Icon="star.png" 
+                     Priority="0" 
+                     Command="{Binding CmdFavMainTapped}"/>
+    </ContentPage.ToolbarItems>
+    
     <StackLayout Padding="0,50">
         <Label Text="{i18n:Translate Lbl1}" 
                HorizontalOptions="Center"
