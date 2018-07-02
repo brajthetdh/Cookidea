@@ -77,6 +77,13 @@ namespace Cookidea
             set { this.SetField(ref this._isBusy, value); }
         }
 
+        private bool _isFavRecipesEmpty;
+        public bool IsFavRecipesEmpty
+        {
+            get { return this._isFavRecipesEmpty; }
+            set { this.SetField(ref this._isFavRecipesEmpty, value); }
+        }
+
         private string _entryIngredientsText;
         public string EntryIngredientsText
         {
@@ -117,8 +124,6 @@ namespace Cookidea
             CmdBtnSearchClicked = new BaseCommand(param => BtnSearchClicked());
 
             ItemTappedCommand = new BaseCommand(param => ItemTapped());
-
-            CmdFavMainTapped = new BaseCommand(param => FavMainTapped());
         }
         #endregion
 
@@ -151,11 +156,11 @@ namespace Cookidea
                     //if the recipe already is in favorites
                     if(await App.DatabaseService.GetItemAsync(recipe.RecipeId) != null)
                     {
-                        App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "starFilled.png", () => DeleteFavorite(recipe)));
+                        App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "fav_filled.png", () => DeleteFavorite(recipe)));
                     }
                     else
                     {
-                        App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "star.png", () => SaveFavorite(recipe)));
+                        App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "fav_empty.png", () => SaveFavorite(recipe)));
                     }
                 }
             }
@@ -168,31 +173,21 @@ namespace Cookidea
         private async void SaveFavorite(Recipe recipe)
         {
             await App.DatabaseService.SaveItemAsync(recipe);
-            await App.Current.MainPage.DisplayAlert(AppResources.TitleFav, AppResources.AlertFavAddedDesc, AppResources.AlertOk);
+            await App.Current.MainPage.DisplayAlert("", AppResources.AlertFavAddedDesc, AppResources.AlertOk);
+            this.IsFavRecipesEmpty = false;
 
             App.Current.MainPage.ToolbarItems.Clear();
-            App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "starFilled.png", () => DeleteFavorite(recipe)));
+            App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "fav_filled.png", () => DeleteFavorite(recipe)));
         }
 
         private async void DeleteFavorite(Recipe recipe)
         {
             await App.DatabaseService.DeleteItemAsync(recipe);
-            await App.Current.MainPage.DisplayAlert(AppResources.TitleFav, AppResources.AlertFavDeletedDesc, AppResources.AlertOk);
+            await App.Current.MainPage.DisplayAlert("", AppResources.AlertFavDeletedDesc, AppResources.AlertOk);
             this.FavRecipes = new ObservableCollection<Recipe>(await App.DatabaseService.GetItemsAsync());
 
             App.Current.MainPage.ToolbarItems.Clear();
-            App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "star.png", () => SaveFavorite(recipe)));
-        }
-
-        private async void FavMainTapped()
-        {
-            this.FavRecipes = new ObservableCollection<Recipe>(await App.DatabaseService.GetItemsAsync());
-            new NavigationService().NavigateTo(new FavPage());
-
-            if(this.FavRecipes.Count == 0)
-            {
-                await App.Current.MainPage.DisplayAlert(AppResources.AlertNoResultsTitle, AppResources.AlertNoFavsDesc, AppResources.AlertOk);
-            }
+            App.Current.MainPage.ToolbarItems.Add(new ToolbarItem("", "fav_empty.png", () => SaveFavorite(recipe)));
         }
 
         private async void BtnSearchClicked()

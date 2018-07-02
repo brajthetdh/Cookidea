@@ -4,7 +4,7 @@
              xmlns:i18n="clr-namespace:Cookidea;assembly=Cookidea"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              x:Class="Cookidea.Views.FavPage"
-             Title="{i18n:Translate TitleFav}">
+             Icon="fav_empty.png">
     <ContentPage.Content>
 
         <Grid>
@@ -43,18 +43,12 @@
                 </flv:FlowListView.FlowColumnTemplate>
             </flv:FlowListView>
 
-            <ActivityIndicator Color="Blue" 
-                               VerticalOptions="Center" 
-                               HorizontalOptions="Center"
-                               IsRunning="{Binding IsBusy}"
-                               IsEnabled="{Binding IsBusy}" 
-                               IsVisible="{Binding IsBusy}">
-                <ActivityIndicator.WidthRequest>
-                    <OnPlatform x:TypeArguments="x:Double"
-                                iOS="100" 
-                                Android="100"/>
-                </ActivityIndicator.WidthRequest>
-            </ActivityIndicator>
+            <Label Text="{i18n:Translate NoFavRecipes}"
+                    HorizontalOptions="Center" 
+                    HorizontalTextAlignment="Center" 
+                    VerticalOptions="Center"
+                    FontSize="Medium"
+                    IsVisible="{Binding IsFavRecipesEmpty}"/>
         </Grid>
 
     </ContentPage.Content>

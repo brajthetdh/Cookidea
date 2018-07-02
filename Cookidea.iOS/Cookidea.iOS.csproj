@@ -175,6 +175,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\star.png" />
+    <BundleResource Include="Resources\fav_filled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fav_empty.png" />
   </ItemGroup>
 </Project>

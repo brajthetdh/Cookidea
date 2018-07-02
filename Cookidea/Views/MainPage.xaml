@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:Cookidea;assembly=Cookidea"
-             x:Class="Cookidea.Views.MainPage"
-             Title="{i18n:Translate TitleMain}">
+             xmlns:local="clr-namespace:Cookidea.Views;assembly=Cookidea"
+             x:Class="Cookidea.Views.MainPage">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Name="FavIcon"
-                     Order="Primary" 
-                     Icon="star.png" 
-                     Priority="0" 
-                     Command="{Binding CmdFavMainTapped}"/>
-    </ContentPage.ToolbarItems>
-    
-    <StackLayout Padding="0,50">
-        <Label Text="{i18n:Translate Lbl1}" 
-               HorizontalOptions="Center"
-               VerticalOptions="Center" 
-               FontSize="20" />
-        <Label Text="{i18n:Translate Lbl2}"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />
-        <Entry x:Name="EntryIngredients" 
-               HorizontalOptions="Center"
-               VerticalOptions="Center" 
-               WidthRequest="250" 
-               Text="{Binding EntryIngredientsText}"
-               Placeholder="{i18n:Translate EntryIngredients}" />
-        <Button x:Name="BtnSearch" 
-                Command="{Binding CmdBtnSearchClicked}"
-                Text="{i18n:Translate BtnSearch}"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center"/>
+    <ContentPage
+        Icon="search.png">
 
-    </StackLayout>
-</ContentPage>
+        <ContentPage.Content>
+            <StackLayout Padding="0,50">
+
+                <Label Text="{i18n:Translate Lbl1}" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" 
+                       FontSize="20" />
+
+                <Label Text="{i18n:Translate Lbl2}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+                
+                <Entry x:Name="EntryIngredients" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" 
+                       WidthRequest="250" 
+                       Text="{Binding EntryIngredientsText}"
+                       Placeholder="{i18n:Translate EntryIngredients}" />
+                
+                <Button x:Name="BtnSearch" 
+                        Command="{Binding CmdBtnSearchClicked}"
+                        Text="{i18n:Translate BtnSearch}"
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center"/>
+                
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <local:FavPage/>
+
+</TabbedPage>

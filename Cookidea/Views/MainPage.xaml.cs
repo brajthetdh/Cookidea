@@ -4,10 +4,11 @@ using Xamarin.Forms.Xaml;
 namespace Cookidea.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public partial class MainPage : TabbedPage
     {
         public MainPage()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
         }
 

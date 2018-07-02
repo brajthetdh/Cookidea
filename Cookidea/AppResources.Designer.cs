@@ -187,6 +187,15 @@ namespace Cookidea {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no recipes in favorites.
+        /// </summary>
+        public static string NoFavRecipes {
+            get {
+                return ResourceManager.GetString("NoFavRecipes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favorites.
         /// </summary>
         public static string TitleFav {

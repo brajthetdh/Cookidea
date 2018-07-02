@@ -165,4 +165,7 @@
   <data name="AlertNoFavsDesc" xml:space="preserve">
     <value>Lista de favoritos vacía</value>
   </data>
+  <data name="NoFavRecipes" xml:space="preserve">
+    <value>No hay recetas en favoritos</value>
+  </data>
 </root>

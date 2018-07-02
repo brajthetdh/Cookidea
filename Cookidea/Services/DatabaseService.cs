@@ -1,11 +1,7 @@
 ﻿using Cookidea.Models;
-using Cookidea.Services;
 using SQLite;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace Cookidea.Services
 {
@@ -25,9 +21,14 @@ namespace Cookidea.Services
         #endregion
 
         #region Methods
-        public Task<List<Recipe>> GetItemsAsync()
+        public async Task<List<Recipe>> GetItemsAsync()
         {
-            return database.Table<Recipe>().ToListAsync();
+            List<Recipe> fav_recipes = await database.Table<Recipe>().ToListAsync();
+            if (fav_recipes.Count == 0)
+            {
+                App.viewModel.IsFavRecipesEmpty = true;
+            }
+            return fav_recipes;
         }
 
         public Task<List<Recipe>> GetItemsNotDoneAsync()
