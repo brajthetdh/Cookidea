@@ -1,5 +1,4 @@
-﻿using Foundation;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Threading;
 using Xamarin.Forms;
 
@@ -25,15 +24,19 @@ namespace Cookidea.Services
         {
             var netLanguage = "en";
 
-            if (Device.RuntimePlatform == Device.iOS && NSLocale.PreferredLanguages.Length > 0)
+            if (Device.RuntimePlatform == Device.iOS)
             {
-                var pref = NSLocale.PreferredLanguages[0];
-                netLanguage = iOSToDotnetLanguage(pref);
+                string[] iOSLocale = DependencyService.Get<ILocaleService>().GetLocale().ToString().Split(',');
+                if (iOSLocale.Length > 0)
+                {
+                    var pref = iOSLocale[0];
+                    netLanguage = iOSToDotnetLanguage(pref);
+                }
             }
             else if (Device.RuntimePlatform == Device.Android)
             {
-                var androidLocale = DependencyService.Get<ILocaleService>().GetLocale();
-                netLanguage = AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
+                var androidLocale = DependencyService.Get<ILocaleService>().GetLocale().ToString();
+                netLanguage = AndroidToDotnetLanguage(androidLocale.Replace("_", "-"));
             }
 
             CultureInfo ci = null;
