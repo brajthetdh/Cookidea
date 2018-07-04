@@ -53,11 +53,8 @@ namespace Cookidea.Services
             }
             finally
             {
-                if (ci == null)
-                {
-                    //language not valid .NET culture, falling back to English
-                    ci = new CultureInfo("en");
-                }
+                //language not valid .NET culture, falling back to English
+                ci = ci ?? new CultureInfo("en");
             }
             return ci;
         }

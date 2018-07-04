@@ -134,12 +134,14 @@ namespace Cookidea
             this.Recipes.Clear();
 
             this.Query = await Services.DownloadService.GetRecipesAsync(param);
-            this.Recipes = new ObservableCollection<Recipe>(this.Query.Recipes);
-            if(this.Recipes.Count == 0)
+            if(this.Query != null)
             {
-                await App.Current.MainPage.DisplayAlert(AppResources.AlertNoResultsTitle, AppResources.AlertNoResultsDesc, AppResources.AlertOk);
+                this.Recipes = new ObservableCollection<Recipe>(this.Query.Recipes);
+                if (this.Recipes.Count == 0)
+                {
+                    await App.Current.MainPage.DisplayAlert(AppResources.AlertNoResultsTitle, AppResources.AlertNoResultsDesc, AppResources.AlertOk);
+                }
             }
-
             this.IsBusy = false;
         }
 
