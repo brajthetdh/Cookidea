@@ -1,4 +1,5 @@
-﻿using Cookidea.Models;
+﻿using Acr.UserDialogs;
+using Cookidea.Models;
 using Cookidea.Services;
 using Cookidea.Views;
 using Plugin.Connectivity;
@@ -175,7 +176,11 @@ namespace Cookidea
         private async void SaveFavorite(Recipe recipe)
         {
             await App.DatabaseService.SaveItemAsync(recipe);
-            await App.Current.MainPage.DisplayAlert("", AppResources.AlertFavAddedDesc, AppResources.AlertOk);
+
+            UserDialogs.Instance.Toast(new ToastConfig(AppResources.AlertFavAddedDesc)
+                                            .SetDuration(3000)
+                                            .SetBackgroundColor(System.Drawing.Color.FromArgb(12, 131, 193)));
+
             this.IsFavRecipesEmpty = false;
 
             App.Current.MainPage.ToolbarItems.Clear();
@@ -185,7 +190,11 @@ namespace Cookidea
         private async void DeleteFavorite(Recipe recipe)
         {
             await App.DatabaseService.DeleteItemAsync(recipe);
-            await App.Current.MainPage.DisplayAlert("", AppResources.AlertFavDeletedDesc, AppResources.AlertOk);
+
+            UserDialogs.Instance.Toast(new ToastConfig(AppResources.AlertFavDeletedDesc)
+                                            .SetDuration(3000)
+                                            .SetBackgroundColor(System.Drawing.Color.FromArgb(12, 131, 193)));
+
             this.FavRecipes = new ObservableCollection<Recipe>(await App.DatabaseService.GetItemsAsync());
 
             App.Current.MainPage.ToolbarItems.Clear();
