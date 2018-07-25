@@ -9,7 +9,7 @@
         Icon="search.png">
 
         <ContentPage.Content>
-            <StackLayout Padding="0,50">
+            <StackLayout Padding="0,50" Spacing="20">
 
                 <Label Text="{i18n:Translate Lbl1}" 
                        HorizontalOptions="Center"
@@ -31,7 +31,11 @@
                         Command="{Binding CmdBtnSearchClicked}"
                         Text="{i18n:Translate BtnSearch}"
                         HorizontalOptions="Center" 
-                        VerticalOptions="Center"/>
+                        VerticalOptions="Center"
+                        BorderRadius="20"
+                        TextColor="White"
+                        BackgroundColor="#2196F3"
+                        Margin="0,20,0,0"/>
                 
             </StackLayout>
         </ContentPage.Content>
