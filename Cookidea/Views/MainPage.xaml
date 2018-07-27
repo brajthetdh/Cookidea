@@ -6,21 +6,26 @@
              x:Class="Cookidea.Views.MainPage">
 
     <ContentPage
-        Icon="search.png">
+        Icon="search.png"
+        BackgroundImage="cook_bg.png">
 
         <ContentPage.Content>
             <StackLayout Padding="0,50" Spacing="20">
 
                 <Label Text="{i18n:Translate Lbl1}" 
+                       TextColor="White"
                        HorizontalOptions="Center"
                        VerticalOptions="Center" 
                        FontSize="20" />
 
                 <Label Text="{i18n:Translate Lbl2}"
+                       TextColor="White"
                        HorizontalOptions="Center"
                        VerticalOptions="Center" />
                 
-                <Entry x:Name="EntryIngredients" 
+                <Entry x:Name="EntryIngredients"
+                       TextColor="White"
+                       PlaceholderColor="White"
                        HorizontalOptions="Center"
                        VerticalOptions="Center" 
                        WidthRequest="250" 

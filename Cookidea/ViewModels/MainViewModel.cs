@@ -205,7 +205,7 @@ namespace Cookidea
         {
             if (CrossConnectivity.Current.IsConnected)
             {
-                var regex = new Regex(@"(?i)^[a-z,\s]+$");  //Only letters and commas are valid
+                var regex = new Regex(@"(?i)^[a-z,\s]+$");  //Only letters and commas are valid input
                 if (!string.IsNullOrEmpty(EntryIngredientsText) && !string.IsNullOrWhiteSpace(EntryIngredientsText) && regex.IsMatch(EntryIngredientsText))
                 {
                     SearchRecipesAsync(EntryIngredientsText.Replace(" ", string.Empty));
