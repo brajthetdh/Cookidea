@@ -27,7 +27,10 @@ namespace Cookidea
             AppResources.Culture = ci; // set the RESX for resource localization
             localizeService.SetLocale(ci); // set the Thread for locale-aware methods
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage()){
+                BarBackgroundColor = Color.DarkOrange,
+                BarTextColor = Color.White
+            };
         }
         #endregion
 

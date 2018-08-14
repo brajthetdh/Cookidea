@@ -6,43 +6,76 @@
              x:Class="Cookidea.Views.MainPage">
 
     <ContentPage
-        Icon="search.png"
-        BackgroundImage="cook_bg.png">
+        Icon="search.png">
 
         <ContentPage.Content>
-            <StackLayout Padding="0,50" Spacing="20">
+            <RelativeLayout Padding="0">
+                <Image Aspect="AspectFill"
+                        Source="cook_bg.png"
+                        RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                        RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+                </Image>
 
-                <Label Text="{i18n:Translate Lbl1}" 
-                       TextColor="White"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" 
-                       FontSize="20" />
+                <StackLayout Spacing="20"
+                             RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+                    <StackLayout.Padding>
+                        <OnPlatform x:TypeArguments="Thickness"
+                                    iOS="0,100"
+                                    Android="0,50"/>
+                    </StackLayout.Padding>
+                
+                    <Label Text="{i18n:Translate Lbl1}" 
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           FontSize="20" />
 
-                <Label Text="{i18n:Translate Lbl2}"
-                       TextColor="White"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" />
+                    <Label Text="{i18n:Translate Lbl2}"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                    
+                    <Entry x:Name="EntryIngredients"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           WidthRequest="250" 
+                           Text="{Binding EntryIngredientsText}"
+                           Placeholder="{i18n:Translate EntryIngredients}">
+                        <Entry.PlaceholderColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Black" />
+                                <On Platform="Android" Value="White" />
+                            </OnPlatform>
+                        </Entry.PlaceholderColor>
+                        <Entry.TextColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Black" />
+                                <On Platform="Android" Value="White" />
+                            </OnPlatform>
+                        </Entry.TextColor>
+                    </Entry>
+                    
+                    <Button x:Name="BtnSearch" 
+                            Command="{Binding CmdBtnSearchClicked}"
+                            Text="{i18n:Translate BtnSearch}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center" 
+                            VerticalOptions="Center"
+                            BorderRadius="20"
+                            TextColor="White"
+                            BackgroundColor="DarkOrange"
+                            Margin="0,20,0,0">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double"
+                                    iOS="100"/>
+                        </Button.WidthRequest>
+                    </Button>
                 
-                <Entry x:Name="EntryIngredients"
-                       TextColor="White"
-                       PlaceholderColor="White"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" 
-                       WidthRequest="250" 
-                       Text="{Binding EntryIngredientsText}"
-                       Placeholder="{i18n:Translate EntryIngredients}" />
+                </StackLayout>
                 
-                <Button x:Name="BtnSearch" 
-                        Command="{Binding CmdBtnSearchClicked}"
-                        Text="{i18n:Translate BtnSearch}"
-                        HorizontalOptions="Center" 
-                        VerticalOptions="Center"
-                        BorderRadius="20"
-                        TextColor="White"
-                        BackgroundColor="#2196F3"
-                        Margin="0,20,0,0"/>
-                
-            </StackLayout>
+            </RelativeLayout>
+
         </ContentPage.Content>
     </ContentPage>
 
