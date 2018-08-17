@@ -21,7 +21,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>11.4</string>
 	<key>CFBundleDisplayName</key>
 	<string>Cookidea</string>
 	<key>CFBundleIdentifier</key>
@@ -34,20 +34,24 @@
 	<string>Cookidea</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-
 	<key>CFBundleLocalizations</key>
 	<array>
-	    <string>de</string>
-	    <string>es</string>
-	    <string>fr</string>
-	    <string>ja</string>
-	    <string>pt</string> <!-- Brazil -->
-	    <string>pt-PT</string> <!-- Portugal -->
-	    <string>ru</string>
-	    <string>zh-Hans</string>
-	    <string>zh-Hant</string>
+		<string>de</string>
+		<string>es</string>
+		<string>fr</string>
+		<string>ja</string>
+		<string>pt</string>
+		<string>pt-PT</string>
+		<string>ru</string>
+		<string>zh-Hans</string>
+		<string>zh-Hant</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
