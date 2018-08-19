@@ -6,5 +6,6 @@ In order the app to work, you need to change "apiKey" in DownloadService class w
 
 I've used flowListView (thanks to Daniel https://github.com/daniel-luberda/DLToolkit.Forms.Controls/tree/master/FlowListView) to show recipes information.
 
+                Android                                                                           iOS
 <img align="left" width="336" height="560" src="https://github.com/carlosmacmar/Cookidea/blob/master/android.png">
 <img align="right" width="336" height="560" src="https://github.com/carlosmacmar/Cookidea/blob/master/iOS.JPG">
