@@ -8,11 +8,12 @@ namespace Cookidea.Services
     static class DownloadService
     {
         /// <summary>
-        /// Change MY_API_KEY with your API key obtained from food2fork.com
+        /// Change apiKey with your API key obtained from food2fork.com
         /// </summary>
         public async static Task<Query> GetRecipesAsync(string param)
         {
-            string url = "http://food2fork.com/api/search?key=08656c67b2bde6f54954f384203cc940&q=" + param;
+            string apiKey = "WRITE-HERE-YOUR-API-KEY";
+            string url = "http://food2fork.com/api/search?key="+ apiKey +"&q=" + param;
             HttpClient client = new HttpClient();
             try
             {
