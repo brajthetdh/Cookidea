@@ -61,18 +61,13 @@
                             Command="{Binding CmdBtnSearchClicked}"
                             Text="{i18n:Translate BtnSearch}"
                             FontAttributes="Bold"
+                            WidthRequest="100"
                             HorizontalOptions="Center" 
                             VerticalOptions="Center"
                             BorderRadius="20"
                             TextColor="White"
                             BackgroundColor="DarkOrange"
-                            Margin="0,20,0,0">
-                        <Button.WidthRequest>
-                            <OnPlatform x:TypeArguments="x:Double"
-                                    iOS="100"
-                                    Android="100"/>
-                        </Button.WidthRequest>
-                    </Button>
+                            Margin="0,20,0,0"/>
                 
                 </StackLayout>
                 
