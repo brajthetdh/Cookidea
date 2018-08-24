@@ -11,3 +11,6 @@ Check it out at https://play.google.com/store/apps/details?id=com.carlos.Cookide
                 Android                                                                           iOS
 <img align="left" width="336" height="560" src="https://github.com/carlosmacmar/Cookidea/blob/master/android.png">
 <img align="right" width="336" height="560" src="https://github.com/carlosmacmar/Cookidea/blob/master/iOS.JPG">
+
+
+This software comes with no warranties. I'm not responsible of the use you give it.
