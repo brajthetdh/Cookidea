@@ -9,10 +9,10 @@ namespace Cookidea.Services
     {
         /// <summary>
         /// Change apiKey with your API key obtained from food2fork.com
-        /// </summary>
+        /// </summary>º
         public async static Task<Query> GetRecipesAsync(string param)
         {
-            string apiKey = "WRITE-HERE-YOUR-API-KEY";
+            string apiKey = "08656c67b2bde6f54954f384203cc940";
             string url = "http://food2fork.com/api/search?key="+ apiKey +"&q=" + param;
             HttpClient client = new HttpClient();
             try

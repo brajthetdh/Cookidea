@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:Cookidea;assembly=Cookidea"
              xmlns:local="clr-namespace:Cookidea.Views;assembly=Cookidea"
-             x:Class="Cookidea.Views.MainPage">
+             x:Class="Cookidea.Views.MainPage"
+             BarBackgroundColor="DarkOrange">
 
     <ContentPage
         Icon="search.png"
-        BackgroundColor="DarkOrange">
+        Title="Search">
 
         <ContentPage.Content>
             <RelativeLayout Padding="0">
@@ -56,24 +57,19 @@
                             </OnPlatform>
                         </Entry.TextColor>
                     </Entry>
-                    
+
                     <Button x:Name="BtnSearch" 
                             Command="{Binding CmdBtnSearchClicked}"
                             Text="{i18n:Translate BtnSearch}"
                             FontAttributes="Bold"
+                            WidthRequest="100"
                             HorizontalOptions="Center" 
                             VerticalOptions="Center"
                             BorderRadius="20"
                             TextColor="White"
                             BackgroundColor="DarkOrange"
-                            Margin="0,20,0,0">
-                        <Button.WidthRequest>
-                            <OnPlatform x:TypeArguments="x:Double"
-                                    iOS="100"
-                                    Android="100"/>
-                        </Button.WidthRequest>
-                    </Button>
-                
+                            Margin="0,20,0,0"/>
+
                 </StackLayout>
                 
             </RelativeLayout>

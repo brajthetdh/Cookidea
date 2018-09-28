@@ -4,7 +4,8 @@
              xmlns:i18n="clr-namespace:Cookidea;assembly=Cookidea"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              x:Class="Cookidea.Views.FavPage"
-             Icon="fav_empty.png">
+             Icon="fav_empty.png"
+             Title="Favs">
     <ContentPage.Content>
 
         <Grid>
